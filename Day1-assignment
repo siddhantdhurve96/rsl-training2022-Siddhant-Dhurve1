@@ -1,0 +1,105 @@
+class Node {
+      int data;
+      Node next;
+      Node prev;
+     
+     Node(int data){
+         this.data=data;
+         this.next=next;
+         this.prev=prev;
+     }
+}
+
+class LinkedList{
+      Node head;
+      Node tail;
+     
+      void addNodeAtFirst(int data){   // add at first
+       Node newNode= new Node(data);
+       if(head==null){
+         head= newNode;
+         tail=newNode;
+         return;
+        }
+        else{
+            newNode.next=head;
+            head.prev=newNode;
+            head=newNode;
+            
+         }
+       }
+       void addNodeAtLast(int data){   // add at Last
+       Node newNode= new Node(data);
+       if(head==null){
+         head= newNode;
+         tail=newNode;
+         return;
+        }
+        else{
+            tail.next=newNode;
+            tail=newNode;
+         }
+       }
+       void addNodeAfterK(Node current,int data){   // add after kth element
+       if(current==null){
+         System.out.println("Node is null");
+          return;
+        }
+
+       Node newNode= new Node(data);
+       newNode.next=current.next;
+       current.next=newNode;
+       newNode.prev=current;
+      if(newNode.next!=null){
+        newNode.next.prev=newNode;
+      }
+     }
+
+      void deleteFirst(){   // delete first element
+        if(head==null){
+           System.out.println("no node available");
+           return;
+         }
+         head=head.next;
+         head.prev=null;
+       
+       }
+
+      void deletelast(){   // delete last element
+        if(head==null){
+           System.out.println("no node available");
+           return;
+         }
+        tail= tail.prev.next;
+        tail.next=null;
+       
+       }
+       void deleteAfterK(Node current){   // delete after k element
+        if(head==null){
+           System.out.println("no node available");
+           return;
+         }
+         
+         current.next=current.next.next;
+         current.next.next.prev=current.next;
+       
+       }
+       boolean find(int data){                      // searching data
+             if(head==null){
+           System.out.println("no node available");
+           return;
+         }
+        node newNode=head;
+         boolean ans=false;
+        while(newNode!=null){
+            if(newNode.data==data){
+                ans=true;
+                break;
+            }
+            newNode=newNode.next;
+        }
+        return ans;
+      }
+
+}
+      
