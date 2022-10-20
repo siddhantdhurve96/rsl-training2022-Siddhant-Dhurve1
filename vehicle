@@ -1,0 +1,144 @@
+/**
+  * abstract vehicle class
+  */
+
+ abstract class vehicle{
+         // seats of vehicle
+        private int seat;
+
+         // productionyear of vehicle
+        public int year;
+
+          // abstract run method
+        abstract void run();
+
+          // abstract brake method
+        abstract void brake();
+
+        abstract void productionYear(int year);
+        
+           //getter for  seats
+        public int getSeatNo(){
+            return seat;
+        }
+          //setter for seats
+        public void setSeatNo(int seat){
+            this.seat=seat;
+        }
+
+            //move at speed
+        public void move(int speed){
+            System.out.println("move at this speed" +speed );
+        }
+          
+          // gear change
+        public void changeGear(){
+            System.out.println("gear changed" );
+        }
+     
+           // take turn
+        public void steeringWheel(int degree){
+            if(degree<0){
+                System.out.println("turn the steering left at" + degree );
+            }
+            else if(degree>0){
+                System.out.println("turn the steering right at" + degree );
+            }
+            else{
+                System.out.println("keep steering stable" );
+            }
+        }
+    }
+    
+        /**
+          * car is type of vehicle
+          */
+ 
+    public class car extends vehicle{
+        void run(){
+            System.out.println("run the car" );
+        }
+        void brake(){
+            System.out.println("stop the car" );
+        }
+        void productionYear(int year){
+            year=2022;
+            System.out.println("production year is"+ year );
+        }
+        
+    }
+
+        /**
+          * bus is type of vehicle
+          */
+    public class bus extends vehicle{
+
+        class airbag{
+         int noOfAirBags;
+        }
+
+        void run(){
+            System.out.println("run the bus" );
+        }
+        void brake(){
+            System.out.println("stop the bus" );
+        }
+        void productionYear(int year){
+            year=2001;
+            System.out.println("production year is"+ year );
+        }
+    }
+
+        /**
+          * cycle is type of vehicle
+          */
+    public class cycle extends vehicle{
+        void run(){
+            System.out.println("start cycle" );
+        }
+        void brake(){
+            System.out.println("stop cycle" );
+        }
+        void productionYear(int year){
+            year=2016;
+            System.out.println("production year is"+ year );
+        }
+        
+    }
+
+  // factory method to call type of vehicle
+class create {
+        public vehicle getVehicle(String vehicleType){
+            if(vehicleType==null){
+                return null;
+            }
+            if(vehicleType.equalsIgnoreCase("car")){
+                return new car();
+            }
+            else if(vehicleType.equalsIgnoreCase("bus")){
+                return new bus();
+            }
+            else if(vehicleType.equalsIgnoreCase("cycle")){
+                return new cycle();
+            }
+            return null;
+        }
+    }
+
+
+
+
+class Test{
+  public static void main(String args[]){
+
+create checkVehicle=new create();
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in)); 
+
+String type=br.readLine();
+int year=br.readLine();
+
+vehicle find=checkVehicle.getVehicle(type);
+System.out.println("the vehicle is"+type);
+find.productionYear(year);
+  }
+}
