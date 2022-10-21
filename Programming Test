@@ -1,0 +1,175 @@
+1)
+    static void printPair(int arr[],int value){
+        // for(int i=0;i<arr.length;i++){
+        //     for(int j=i+1;j<arr.length;j++){         
+        //         if(arr[i]*arr[j]==value){                      
+        //             System.out.println(arr[i]+" "+arr[j]);
+        //         }
+        //     }
+        // }
+        
+        HashSet<Integer> set=new HashSet<>();                   //use hashset
+        for(int i=0;i<arr.length;i++){
+            if(set.contains(value/arr[i])){                      //check if divisible contains in set
+                if(value%arr[i]==0){
+                System.out.println(value/arr[i]+" "+arr[i]);     //print
+                }
+            }
+            else{                                                 
+                set.add(arr[i]);
+            }
+        }
+        
+   
+2)
+    static void maxProduct(int arr[]){
+        int n=arr.length;
+        if(n<3){
+          System.out.println("not valid ");                              // array length less than 3 then return;
+          return;
+        }
+        
+        int maxIndex1=0;
+        int maxIndex2=-1;
+        int maxIndex3=-1;
+        for(int i=1;i<n;i++){
+            if(arr[i]>arr[maxIndex1]){
+                maxIndex3=maxIndex2;
+                maxIndex2=maxIndex1                                                 // finding max1 index
+                maxIndex1=i;
+            }
+            else if(maxIndex2==-1 || arr[i]>arr[maxIndex2]){                     // finding max2 index
+                maxIndex3=maxIndex2;
+                maxIndex2=i;
+            }
+            else if(maxIndex3==-1 || arr[i]>arr[maxIndex3]){                     // finding max3 index
+            }
+                maxIndex3=i
+            }
+        }
+        
+        int minIndex1=0; minIndex2=-1;    
+                                                                         // if two negative values with greater number
+        for(int i=1;i<n;i++){
+            if(arr[i]<arr[minIndex1]){
+                minIndex2=minIndex1;
+                minIndex1=i;                                              // finding min1 index for two negative values
+            }
+            else if(minIndex2==-1 || arr[i]<arr[minIndex2] ){
+                minIndex2=i;                                               // finding min2 index for two negative values
+            }
+        }
+        
+        if(arr[maxIndex1]*arr[maxIndex2]*arr[maxIndex3]>arr[minIndex1]*arr[minIndex2]*arr[maxIndex1]){
+            System.out.print(arr[maxIndex1]+" "+arr[maxIndex2]+" "+arr[maxIndex3]);                             // comparing greater product
+        }
+        else{
+           System.out.print(arr[maxIndex1]*arr[minIndex1]*arr[minIndex2]);
+        }
+        
+        
+    }
+	
+3)
+static void countOfChar(char arr[]){
+        HashMap<Character,Integer> map=new HashMap<>();                   // use hashmap 
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]=='\n'){
+                System.out.println(map.get(arr[i-1]);                      // if encounter '\n' then print count
+                break;
+            }
+            if(map.containsKey(arr[i]){
+                map.put(arr[i],map.get(arr[i])+1);                         // increasing count of char
+            }
+            else{
+                map.put(arr[i],1);
+            }
+        }
+    }
+
+
+
+4) 
+ boolean balanceParenthesis(char arr[]){
+       Stack<Character> stack=new Stack<>();                    // use stack
+         for(int i=0;i<arr.length;i++){
+             if(arr[i]=='('||arr[i]=='{'||arr[i]=='[' ){
+                 stack.push(arr[i]);                               // put open parenthesis in stack
+             }
+             else if(stack.peek()=='(' && arr[i]==')' || stack.peek()=='{' && arr[i]=='}'||stack.peek()=='[' && arr[i]==']'){
+                 stack.pop();                                                                                                     // remove char if found balanced
+             }
+         }
+         if(stack.empty()){                 
+             return true;       // return true if stack empty
+         }
+         else{
+             return false;       // return false if stack not empty
+         }
+   }
+
+
+5)
+ Node middle(Node head){
+        Node slow=head;         // initialize with head 
+        Node fast=head;
+        
+        while(fast!=null && fast.next!=null && fast.next.next!=null){
+            slow=slow.next;                                 // moving by 1 step
+            fast=fast.next.next;                            // moving by 2 step
+        }
+        return slow;                                         // slow will be at middle of LinkedList
+    }
+
+
+
+6)
+    static void pattern(int n){
+        for(int i=1;i<=n;i++){
+            for(int j=0;j<=n-i;j++){
+                System.out.print(" ");       // left space
+            }
+        
+        
+            int k=1;
+            for(int m=1;m<=n;m++){
+            System.out.print(k+" "); 
+            k=k*(i-m)/m;
+            }
+           System.out.println();
+        }
+    }
+
+
+
+
+7)
+
+    static void secondMaxDiff(int arr[]){
+        if(arr.length<3){
+            System.out.print("increse elements"); // array less in size
+            return;
+        }
+        
+        int max=Integer.MIN_VALUE;                // initializing max and min value
+        int min1=Integer.MAX_VALUE;
+        int min2=Integer.MAX_VALUE;
+        int differnce=-1;
+        
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]>max){
+                max=arr[i];                        // max value in array
+            }
+            
+            if(arr[i]<min1){
+                min2=min1;                          // min value in array
+                min1=arr[i];
+            }
+            if(arr[i]<min2 && arr[i]!=min1){
+                min2=arr[i];                         // second min value in array
+            }
+        }
+        difference=max-min2;
+        System.out.println(difference);                // second max difference
+        
+    }
